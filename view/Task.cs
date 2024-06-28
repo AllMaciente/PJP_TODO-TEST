@@ -48,7 +48,7 @@ public class ViewTask : Form
 
         InpDate = new TextBox
         {
-            Name = "InpData",
+            Name = "InpDate",
             Location = new Point(100, 50),
             Size = new Size(200, 30)
         };
@@ -72,7 +72,7 @@ public class ViewTask : Form
             Location = new Point(325, 25),
             Size = new Size(100, 20)
         };
-        // btnCreate.Click += ClickCreate;
+        btnCreate.Click += ClickCreate;
 
         btnAlterar = new Button
         {
@@ -112,21 +112,46 @@ public class ViewTask : Form
 
         Listar();
     }
+    private void ClickCreate(object? sender, EventArgs e)
+    {
+        if (InpName.Text == "")
+        {
+            MessageBox.Show("Preencha o nome");
+            return;
+        }
+        if (InpTime.Text == "")
+        {
+            MessageBox.Show("Preencha a Hora");
+            return;
+        }
+        if (InpDate.Text == "")
+        {
+            MessageBox.Show("Preencha o data");
+            return;
+        }
+
+
+        // ControllerPessoa.CriarPessoa(inpNome.Text, Convert.ToInt32(inpIdade.Text), inpCpf.Text);
+        ControllerTask.Create(InpName.Text, InpDate.Text, InpTime.Text);
+        Listar();
+    }
     private void Listar()
     {
         List<ModelTask> tasks = ControllerTask.Read();
         dgvPessoas.Columns.Clear();
         dgvPessoas.AutoGenerateColumns = false;
         dgvPessoas.DataSource = tasks;
-
+        // /*
         dgvPessoas.Columns.Add(new DataGridViewTextBoxColumn
         {
             DataPropertyName = "Id",
             HeaderText = "Id"
         });
+
+        // */
         dgvPessoas.Columns.Add(new DataGridViewTextBoxColumn
         {
-            DataPropertyName = "Nome",
+            DataPropertyName = "Titulo",
             HeaderText = "Nome"
         });
         dgvPessoas.Columns.Add(new DataGridViewTextBoxColumn
