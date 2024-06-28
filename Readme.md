@@ -1,4 +1,4 @@
-# UC01 - Avaliação - LIST, CRUD, MVC - C
+# UC0# - Avaliação - LIST, CRUD, MVC, WINFORMS e BANCO DE DADOS - C#
 
 ## Instruções
 
@@ -12,3 +12,6 @@ Vale reforçar que a tarefa deverá conter: o nome da tarefa, a data, a hora. Se
 Parte 2: Deverá conter também uma função que APENAS conclua ou "des"conclua a tarefa.
 
 ### notes
+```sql
+
+```

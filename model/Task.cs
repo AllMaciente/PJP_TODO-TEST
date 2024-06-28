@@ -1,4 +1,7 @@
-namespace Todo
+using Repository;
+using System.Collections.Generic;
+
+namespace Model
 {
     public class Task
     {
@@ -14,27 +17,29 @@ namespace Todo
             Hora = hora;
             Concluida = false;
 
-            RepoTask.tasks.Add(this);
+            Repo.tasks.Add(this);
         }
+
         public static List<Task> Listar()
         {
-            return RepoTask.tasks;
-        }
-        public static void Deletar(int indece)
-        {
-            RepoTask.tasks.RemoveAt(indece);
-        }
-        public static void Editar(int indece, string titulo, string data, string hora)
-        {
-            RepoTask.tasks[indece].Titulo = titulo;
-            RepoTask.tasks[indece].Data = data;
-            RepoTask.tasks[indece].Hora = hora;
-        }
-        public static void marcar(int indece, bool check)
-        {
-            RepoTask.tasks[indece].Concluida = check;
+            return Repo.tasks;
         }
 
+        public static void Deletar(int indice)
+        {
+            Repo.tasks.RemoveAt(indice);
+        }
 
+        public static void Editar(int indice, string titulo, string data, string hora)
+        {
+            Repo.tasks[indice].Titulo = titulo;
+            Repo.tasks[indice].Data = data;
+            Repo.tasks[indice].Hora = hora;
+        }
+
+        public static void Marcar(int indice, bool check)
+        {
+            Repo.tasks[indice].Concluida = check;
+        }
     }
 }
