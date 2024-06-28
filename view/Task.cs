@@ -88,7 +88,7 @@ public class ViewTask : Form
             Location = new Point(325, 75),
             Size = new Size(100, 20)
         };
-        // btnDelete.Click += ClickDeletar;
+        btnDelete.Click += ClickDeletar;
 
         dgvPessoas = new DataGridView
         {
@@ -133,6 +133,12 @@ public class ViewTask : Form
 
         // ControllerPessoa.CriarPessoa(inpNome.Text, Convert.ToInt32(inpIdade.Text), inpCpf.Text);
         ControllerTask.Create(InpName.Text, InpDate.Text, InpTime.Text);
+        Listar();
+    }
+    private void ClickDeletar(object? sender, EventArgs e)
+    {
+        int index = dgvPessoas.SelectedRows[0].Index;
+        ControllerTask.Delete(index);
         Listar();
     }
     private void Listar()
