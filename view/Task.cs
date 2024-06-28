@@ -80,7 +80,7 @@ public class ViewTask : Form
             Location = new Point(325, 50),
             Size = new Size(100, 20)
         };
-        // btnAlterar.Click += ClickAlterar;
+        btnAlterar.Click += ClickAlterar;
 
         btnDelete = new Button
         {
@@ -133,6 +133,27 @@ public class ViewTask : Form
 
         // ControllerPessoa.CriarPessoa(inpNome.Text, Convert.ToInt32(inpIdade.Text), inpCpf.Text);
         ControllerTask.Create(InpName.Text, InpDate.Text, InpTime.Text);
+        Listar();
+    }
+    private void ClickAlterar(object sender, EventArgs e)
+    {
+        if (InpName.Text == "")
+        {
+            MessageBox.Show("Preencha o nome");
+            return;
+        }
+        if (InpTime.Text == "")
+        {
+            MessageBox.Show("Preencha a Hora");
+            return;
+        }
+        if (InpDate.Text == "")
+        {
+            MessageBox.Show("Preencha o data");
+            return;
+        }
+        int index = dgvPessoas.SelectedRows[0].Index;
+        ControllerTask.Update(index, InpName.Text, InpDate.Text, InpTime.Text);
         Listar();
     }
     private void ClickDeletar(object? sender, EventArgs e)
