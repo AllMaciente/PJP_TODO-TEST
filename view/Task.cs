@@ -1,4 +1,6 @@
+using ModelTask = Model.Task;
 using Controller;
+using Model;
 
 namespace View;
 
@@ -107,5 +109,35 @@ public class ViewTask : Form
         Controls.Add(btnDelete);
 
         Controls.Add(dgvPessoas);
+
+        Listar();
+    }
+    private void Listar()
+    {
+        List<ModelTask> tasks = ControllerTask.Read();
+        dgvPessoas.Columns.Clear();
+        dgvPessoas.AutoGenerateColumns = false;
+        dgvPessoas.DataSource = tasks;
+
+        dgvPessoas.Columns.Add(new DataGridViewTextBoxColumn
+        {
+            DataPropertyName = "Id",
+            HeaderText = "Id"
+        });
+        dgvPessoas.Columns.Add(new DataGridViewTextBoxColumn
+        {
+            DataPropertyName = "Nome",
+            HeaderText = "Nome"
+        });
+        dgvPessoas.Columns.Add(new DataGridViewTextBoxColumn
+        {
+            DataPropertyName = "Data",
+            HeaderText = "Data"
+        });
+        dgvPessoas.Columns.Add(new DataGridViewTextBoxColumn
+        {
+            DataPropertyName = "Hora",
+            HeaderText = "Hora"
+        });
     }
 }
