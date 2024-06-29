@@ -22,6 +22,8 @@ public class ViewTask : Form
     private readonly DataGridView dgvPessoas;
     public ViewTask()
     {
+        ControllerTask.Sincronizar();
+
         Size = new Size(500, 350);
         MinimumSize = new Size(500, 350);
         StartPosition = FormStartPosition.CenterScreen;
@@ -168,7 +170,7 @@ public class ViewTask : Form
         dgvPessoas.Columns.Clear();
         dgvPessoas.AutoGenerateColumns = false;
         dgvPessoas.DataSource = tasks;
-        // /*
+        /*
         dgvPessoas.Columns.Add(new DataGridViewTextBoxColumn
         {
             DataPropertyName = "Id",
