@@ -5,6 +5,10 @@ namespace Controller
 {
     public class ControllerTask
     {
+        public static void Sincronizar()
+        {
+            ModelTask.Sincronizar();
+        }
         public static void Create(string titulo, string data, string hora)
         {
             new ModelTask(titulo, data, hora);
