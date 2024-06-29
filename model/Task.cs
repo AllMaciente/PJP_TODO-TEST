@@ -37,7 +37,7 @@ namespace Model
 
         public static void Deletar(int indice)
         {
-            Repo.tasks.RemoveAt(indice);
+            Repo.Delete(indice);
         }
 
         public static void Editar(int indice, string titulo, string data, string hora)

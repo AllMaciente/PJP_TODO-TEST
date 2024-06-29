@@ -50,7 +50,7 @@ namespace Repository
 
                     if (rowsAffected > 0)
                     {
-                        MessageBox.Show("Task cadastrada com sucesso");
+                        MessageBox.Show("tarefa cadastrada com sucesso");
                         tasks.Add(task);
                     }
                     else
@@ -118,12 +118,32 @@ namespace Repository
                 }
                 else
                 {
-                    MessageBox.Show("task não encontrado");
+                    MessageBox.Show("tarefa não encontrado");
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Erro durante a execução do comando: " + ex.Message);
+            }
+            CloseConexao();
+        }
+
+        public static void Delete(int index)
+        {
+            InitConexao();
+            string delete = "DELETE FROM task WHERE id = @Id";
+            MySqlCommand command = new MySqlCommand(delete, conexao);
+            command.Parameters.AddWithValue("@Id", tasks[index].Id);
+            // executar
+            int rowsAffected = command.ExecuteNonQuery();
+            if (rowsAffected > 0)
+            {
+                tasks.RemoveAt(index);
+                MessageBox.Show("Tarefa deletada com sucesso.");
+            }
+            else
+            {
+                MessageBox.Show("Tarefa não encontrado.");
             }
             CloseConexao();
         }
