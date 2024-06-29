@@ -28,6 +28,46 @@ namespace Repository
         {
             conexao.Close();
         }
+        public static void Add(ModelTask task)
+        {
+            InitConexao();
+            string insert = "INSERT INTO task (nome, data, hora) VALUES (@Nome, @Data, @Hora );";
+            MySqlCommand command = new MySqlCommand(insert, conexao);
+            try
+            {
+                if (task.Titulo == null || task.Data == null || task.Hora == null)
+                {
+                    MessageBox.Show("Deu ruim, favor preencher a task");
+                }
+                else
+                {
+                    command.Parameters.AddWithValue("@Nome", task.Titulo);
+                    command.Parameters.AddWithValue("@Data", task.Data);
+                    command.Parameters.AddWithValue("@Hora", task.Hora);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+                    task.Id = Convert.ToInt32(command.LastInsertedId);
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Task cadastrada com sucesso");
+                        tasks.Add(task);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Deu ruim, não deu pra adicionar");
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Deu ruim: " + e.Message);
+            }
+
+            CloseConexao();
+        }
+
+
 
         public static List<ModelTask> Sincronizar()
         {

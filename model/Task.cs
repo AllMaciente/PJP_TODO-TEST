@@ -22,7 +22,12 @@ namespace Model
             Hora = hora;
             Concluida = false;
 
-            Repo.tasks.Add(this);
+            Repo.Add(this);
+        }
+
+        public static void Sincronizar()
+        {
+            Repo.Sincronizar();
         }
 
         public static List<Task> Listar()
