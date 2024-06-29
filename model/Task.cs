@@ -5,11 +5,16 @@ namespace Model
 {
     public class Task
     {
+        public int Id { get; set; }
         public string Titulo { get; set; }
         public string Data { get; set; }
         public string Hora { get; set; }
         public bool Concluida { get; set; }
 
+        public Task()
+        {
+
+        }
         public Task(string titulo, string data, string hora)
         {
             Titulo = titulo;
