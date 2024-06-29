@@ -89,5 +89,43 @@ namespace Repository
             CloseConexao();
             return tasks;
         }
+        public static void Update(int indice, string nome, string data, string hora)
+        {
+            InitConexao();
+            string query = "UPDATE task SET nome = @Nome, data = @Data, hora = @Hora WHERE id = @Id";
+            MySqlCommand command = new MySqlCommand(query, conexao);
+            ModelTask task = tasks[indice];
+            try
+            {
+                if (nome != null || data != null || hora != null)
+                {
+                    command.Parameters.AddWithValue("@Id", task.Id);
+                    command.Parameters.AddWithValue("@Nome", nome);
+                    command.Parameters.AddWithValue("@Data", data);
+                    command.Parameters.AddWithValue("@Hora", hora);
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        task.Titulo = nome;
+                        task.Data = data;
+                        task.Hora = hora;
+                    }
+                    else
+                    {
+                        MessageBox.Show(rowsAffected.ToString());
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("task não encontrado");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro durante a execução do comando: " + ex.Message);
+            }
+            CloseConexao();
+        }
     }
 }

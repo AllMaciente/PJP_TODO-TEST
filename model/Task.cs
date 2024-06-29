@@ -42,9 +42,7 @@ namespace Model
 
         public static void Editar(int indice, string titulo, string data, string hora)
         {
-            Repo.tasks[indice].Titulo = titulo;
-            Repo.tasks[indice].Data = data;
-            Repo.tasks[indice].Hora = hora;
+            Repo.Update(indice, titulo, data, hora);
         }
 
         public static void Marcar(int indice, bool check)
